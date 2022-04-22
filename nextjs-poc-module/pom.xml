@@ -14,11 +14,6 @@
   <!--
   <description>Please uncomment and fill in ...</description>
   -->
-  <properties>
-    <magnoliaBundleVersion>6.2.18</magnoliaBundleVersion>
-    <javaVersion>1.8</javaVersion>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
