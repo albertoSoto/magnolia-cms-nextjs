@@ -4,7 +4,7 @@
 <head>
     <title>${title}</title>
 
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/nextjs-poc-module/webresources/css/style.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/nextJSPocModule/webresources/css/style.css">
 
 [@cms.page /]
 </head>
