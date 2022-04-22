@@ -26,3 +26,5 @@ This generates the needed dialogs and files
 
 # Guideline for nextjs
 
+- Under frontdev/nextjs-ssg-minimal there is a NextJS project that will be embedded into magnolia author
+- 
