@@ -1,0 +1,6 @@
+title: sandbox-landing
+templateScript: /sandbox/templates/pages/sandbox-landing.ftl
+renderType: freemarker
+dialog: sandbox:pages/sandbox-landing
+visible: true
+
