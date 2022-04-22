@@ -1,0 +1,10 @@
+templateScript: /nextjs-poc-module/templates/pages/dummy-page.ftl
+renderType: freemarker
+visible: true
+dialog: nextjs-poc-module:pages/dummy-page-properties
+areas:
+  main:
+    renderType: freemarker
+    availableComponents:
+      dummy-component:
+        id: nextjs-poc-module:components/dummy-component
