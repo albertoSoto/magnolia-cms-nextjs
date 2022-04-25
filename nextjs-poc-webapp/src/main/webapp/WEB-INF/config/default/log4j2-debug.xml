@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p %-50.50c: %m%n"/>
+    </Console>
+
+<!-- mail appender. You may want to enable this on production to be immediately notified in case of errors -->
+<!--
+    <SMTP name="smtp"
+          suppressExceptions="false"
+          subject="[magnolia error ${pom.version} ${server}] %m"
+          to="myerrormailbox@mymailserver.com"
+          from="my magnolia website &lt;magnolia@mymagnoliasite.com&gt;"
+          smtpHost="localhost"
+          smtpPort="25"
+          bufferSize="512">
+
+        <ThresholdFilter level="error" onMatch="NEUTRAL" onMismatch="DENY" />
+        <RegexFilter regex="org.apache.catalina.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.coyote.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.tomcat.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.jasper.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <PatternLayout>
+            <pattern>[${server}] %-5p %d{dd.MM.yyyy HH:mm:ss} %c %F(%M:%L) - %m%n</pattern>
+            <header>%n
+===================================%n
+Magnolia%n
+Version: ${pom.version}%n
+Server: ${server}%n
+Url: %X{requesturi}%n
+Referer: %X{Referer}%n
+User-Agent: %X{User-Agent}%n
+Remote-Host: %X{Remote-Host}%n
+Session Id: %X{SessionId}%n
+Userid: %X{userid}%n
+Number of occurrences: %o%n
+===================================%n
+        </header>
+            <footer>%n===================================%n</footer>
+        </PatternLayout>
+    </SMTP>
+
+    <Async name="mail">
+        <AppenderRef ref="smtp"/>
+    </Async>
+-->
+    <RollingFile name="sync-log-debug"
+                 fileName="${magnolia.logs.dir}/magnolia-debug.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-debug-%i.log"
+                 append="true">
+      <PatternLayout pattern="%-5p %c %d{dd.MM.yyyy HH:mm:ss} -- %m%n"/>
+      <ThresholdFilter level="DEBUG"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-debug">
+      <AppenderRef ref="sync-log-debug"/>
+    </Async>
+
+    <!-- Log Error-->
+
+    <RollingFile name="sync-log-error"
+                 fileName="${magnolia.logs.dir}/magnolia-error.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-error-%i.log"
+                 append="true">
+      <PatternLayout pattern="%-5p %c %d{dd.MM.yyyy HH:mm:ss} -- %m%n"/>
+      <ThresholdFilter level="ERROR"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-error">
+      <AppenderRef ref="sync-log-error"/>
+    </Async>
+    <RollingFile name="sync-log-activation"
+                 fileName="${magnolia.logs.dir}/magnolia-activation.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-activation-%i.log"
+                 append="true">
+      <PatternLayout pattern="%-5p %c %d{dd.MM.yyyy HH:mm:ss} -- %m%n"/>
+      <ThresholdFilter level="ERROR"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-activation">
+      <AppenderRef ref="sync-log-activation"/>
+    </Async>
+    <File name="log-bootstrap" fileName="${magnolia.logs.dir}/bootstrap.log">
+      <PatternLayout pattern="%-5p %d{dd.MM.yyyy HH:mm:ss}  %m%n"/>
+    </File>
+    <RollingFile name="sync-log-access"
+                 fileName="${magnolia.logs.dir}/magnolia-access.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-access-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <ThresholdFilter level="ERROR"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-access">
+      <AppenderRef ref="sync-log-access"/>
+    </Async>
+    <RollingFile name="sync-log-audit"
+                 fileName="${magnolia.logs.dir}/magnolia-audit.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-audit-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-audit">
+      <AppenderRef ref="sync-log-audit"/>
+    </Async>
+    <RollingFile name="sync-log-form"
+                 fileName="${magnolia.logs.dir}/magnolia-form.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-form-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-form">
+      <AppenderRef ref="sync-log-form"/>
+    </Async>
+
+    <RollingFile name="sync-log-payment-change-form"
+                 fileName="${magnolia.logs.dir}/magnolia-payment-change-form.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-payment-change-form-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss};%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="20MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-payment-change-form">
+      <AppenderRef ref="sync-log-payment-change-form"/>
+    </Async>
+
+    <!-- Opta duplicates log -->
+    <RollingFile name="sync-log-duplicated-opta-entries"
+                 fileName="${magnolia.logs.dir}/magnolia-duplicated-opta-entries.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-duplicated-opta-entries-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-duplicated-opta-entries">
+      <AppenderRef ref="sync-log-duplicated-opta-entries"/>
+    </Async>
+    <!-- End of Opta duplicates log -->
+
+    <!-- Cookie log -->
+    <RollingFile name="sync-log-cookie"
+                 fileName="${magnolia.logs.dir}/magnolia-cookie.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-cookie-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-cookie">
+      <AppenderRef ref="sync-log-cookie"/>
+    </Async>
+    <!-- End of Cookie log -->
+
+    <!-- bookmarking log -->
+    <RollingFile name="sync-log-bookmarking"
+                 fileName="${magnolia.logs.dir}/magnolia-bookmarking.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-bookmarking-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-bookmarking">
+      <AppenderRef ref="sync-log-bookmarking"/>
+    </Async>
+    <!-- End of bookmarking log -->
+
+    <!-- Variations cleanup script log -->
+    <RollingFile name="sync-log-variations-cleanup"
+                 fileName="${magnolia.logs.dir}/magnolia-variations-cleanup.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-variations-cleanup-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss}%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-variations-cleanup">
+      <AppenderRef ref="sync-log-variations-cleanup"/>
+    </Async>
+    <!-- End of Variations cleanup script log -->
+
+    <!-- Data export log -->
+    <RollingFile name="sync-log-article-data-export"
+                 fileName="${magnolia.logs.dir}/magnolia-article-data-export.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-article-data-export-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-article-data-export">
+      <AppenderRef ref="sync-log-article-data-export"/>
+    </Async>
+    <!-- End of data export log -->
+
+    <!-- Pro newsletter log -->
+    <RollingFile name="sync-log-pro-newsletter"
+                 fileName="${magnolia.logs.dir}/magnolia-pro-newsletter.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-pro-newsletter-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-pro-newsletter">
+      <AppenderRef ref="sync-log-pro-newsletter"/>
+    </Async>
+    <!-- End of data export log -->
+
+    <!-- Betting log -->
+    <RollingFile name="sync-log-betting"
+                 fileName="${magnolia.logs.dir}/magnolia-betting.log"
+                 filePattern="${magnolia.logs.dir}/magnolia-betting-%i.log"
+                 append="true">
+      <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5"/>
+    </RollingFile>
+    <Async name="log-betting">
+      <AppenderRef ref="sync-log-betting"/>
+    </Async>
+    <!-- End of data export log -->
+
+</Appenders>
+  <Loggers>
+    <!-- Magnolia categories -->
+    <Logger name="info.magnolia" level="INFO"/>
+
+    <!-- Magnolia categories -->
+    <Logger name="nl.info" level="DEBUG"/>
+    <Logger name="nl.vi" level="DEBUG"/>
+    <Logger name="nl.vpro" level="INFO"/>
+    <Logger name="vpro" level="INFO"/>
+
+    <!-- Activation - additivity is true so logs also go to sub-categories' appenders -->
+    <Logger name="info.magnolia.cms.exchange" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-activation"/>
+    </Logger>
+    <Logger name="info.magnolia.module.activation" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-activation"/>
+    </Logger>
+
+    <!-- bootstrapping -->
+    <Logger name="info.magnolia.importexport.Bootstrapper" level="INFO" additivity="true">
+      <AppenderRef ref="log-bootstrap"/>
+    </Logger>
+
+  <!-- variations cleanup -->
+    <Logger name="nl.vi.magnolia.command.RemoveUnusedVariationsCommand" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-variations-cleanup"/>
+    </Logger>
+
+  <!-- bookmarks  -->
+    <Logger name="nl.vi.magnolia.bookmarks" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-bookmarking"/>
+    </Logger>
+
+    <!-- article data export -->
+    <Logger name="nl.vi.magnolia.command.ExportDataCommand" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-article-data-export"/>
+    </Logger>
+
+    <!-- pro newsletter -->
+    <Logger name="nl.vi.magnolia.pronewsletter" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-pro-newsletter"/>
+    </Logger>
+
+    <!-- betting log -->
+    <Logger name="nl.vi.magnolia.betting" level="DEBUG" additivity="true">
+      <AppenderRef ref="log-betting"/>
+    </Logger>
+
+    <Logger name="log-duplicated-opta-entries" level="DEBUG" additivity="false">
+      <AppenderRef ref="log-duplicated-opta-entries"/>
+    </Logger>
+
+    <Logger name="log-cookie" level="DEBUG" additivity="false">
+      <AppenderRef ref="log-cookie"/>
+    </Logger>
+
+    <!-- Custom log categories - additivity is false so logs only go to the appenders configured here -->
+    <Logger name="log-access" additivity="false">
+      <AppenderRef ref="log-access"/>
+    </Logger>
+    <Logger name="log-audit" additivity="false">
+      <AppenderRef ref="log-audit"/>
+    </Logger>
+    <Logger name="log-form" additivity="false">
+      <AppenderRef ref="log-form"/>
+    </Logger>
+    <Logger name="log-payment-change-form" additivity="false">
+      <AppenderRef ref="log-payment-change-form"/>
+    </Logger>
+
+
+    <!-- External libraries -->
+    <Logger name="org" level="WARN"/>
+    <Logger name="org.apache.jackrabbit" level="WARN"/>
+
+    <!-- Reflections library spoils logs with hundreds of harmless warnings; tries to look into native libs but none of its DefaultUrlTypes can handle them. -->
+    <Logger name="org.reflections" level="ERROR"/>
+    <Logger name="com" level="WARN"/>
+    <Logger name="net" level="WARN"/>
+    <Logger name="freemarker" level="WARN"/>
+    <Logger name="httpclient" level="WARN"/>
+    <Logger name="openwfe.org.log" level="WARN"/>
+    <Logger name="openwfe" level="WARN"/>
+    <Logger name="wiremock" level="WARN"/>
+
+    <Logger name="nl.vi.magnolia.action" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.app" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.cache" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.command" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.dao" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.dcc" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.domain" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.event" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.exception" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.field" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.filter" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.form" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.imaging" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.mapping" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.model" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.multisite" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.personalisation" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.response" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.rest" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.search" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.service" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.servlet" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.setup" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.util" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.view" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.voter" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.workflow" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.rest.LoggingFilter" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.kiosk.KioskEndpoint" level="DEBUG"/>
+    <Logger name="nl.vi.magnolia.subscription.model.SubscriptionShopSuccessComponentModel" level="DEBUG"/>
+
+    <!-- EXTRA DEBUG CACHING  -->
+    <Logger name="info.magnolia.module.cache" level="DEBUG"/>
+    <Logger name="info.magnolia.dpc" level="DEBUG" />
+
+    <Root level="ALL">
+      <AppenderRef ref="log-error"/>
+      <AppenderRef ref="log-debug"/>
+      <!--  debug  -->
+      <AppenderRef ref="console"/>
+      <!--  enable this too to get mail notifications  -->
+      <!--
+        <AppenderRef ref="mail" />
+      -->
+    </Root>
+  </Loggers>
+
+</Configuration>

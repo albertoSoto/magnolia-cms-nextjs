@@ -27,4 +27,4 @@ This generates the needed dialogs and files
 # Guideline for nextjs
 
 - Under frontdev/nextjs-ssg-minimal there is a NextJS project that will be embedded into magnolia author
-- 
+- We need to setup valid perms for the anonymous rol as shown in frontdev/_dev/anonymous-rol-perms.png
