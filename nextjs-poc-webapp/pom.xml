@@ -21,21 +21,21 @@
 
     <!-- option i - magnolia-empty-webapp -->
     <!-- Dependencies versions are already imported by parent pom. Requires "Option A" in the parent pom. -->
-    <dependency>
-      <groupId>info.magnolia</groupId>
-      <artifactId>magnolia-empty-webapp</artifactId>
-      <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>info.magnolia</groupId>
-      <artifactId>magnolia-empty-webapp</artifactId>
-      <type>pom</type>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>info.magnolia</groupId>-->
+<!--      <artifactId>magnolia-empty-webapp</artifactId>-->
+<!--      <type>war</type>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>info.magnolia</groupId>-->
+<!--      <artifactId>magnolia-empty-webapp</artifactId>-->
+<!--      <type>pom</type>-->
+<!--    </dependency>-->
 
 
     <!-- option ii - magnolia-community-webapp -->
     <!-- Dependencies versions are already imported by parent pom. Requires "Option A" in the parent pom. -->
-    <!--
+
     <dependency>
       <groupId>info.magnolia.bundle</groupId>
       <artifactId>magnolia-community-webapp</artifactId>
@@ -46,7 +46,7 @@
       <artifactId>magnolia-community-webapp</artifactId>
       <type>pom</type>
     </dependency>
-    -->
+
 
 
     <!-- option iii - magnolia-dx-core-webapp -->
