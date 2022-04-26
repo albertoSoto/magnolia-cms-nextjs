@@ -1,0 +1,1 @@
+This demo works with NEXT-SSR version
