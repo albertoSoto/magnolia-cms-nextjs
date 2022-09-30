@@ -6,12 +6,18 @@ let NODE_NAME;
 let BASENAME = '';
 
 function renderLink(item) {
+  if (!item){
+    return <>Empty!</>
+  }
+  console.log("THIS IS IT")
+  console.log(item)
+  let linkData = BASENAME + item && item['@path']?item['@path'].replace(NODE_NAME, ''):"";
   return (
     <React.Fragment key={item['@id']}>
-      <Link href={BASENAME + item['@path'].replace(NODE_NAME, '') || '/'} >
+      <Link href={ linkData || '/'} >
         <a>{item['@name']}</a>
       </Link>
-      {item['@nodes'].length > 0 && item['@nodes'].map((nodeName) => renderLink(item[nodeName]))}
+      {item['@nodes'] && item['@nodes'].length > 0 && item['@nodes'].map((nodeName) => renderLink(item[nodeName]))}
     </React.Fragment>
   );
 }

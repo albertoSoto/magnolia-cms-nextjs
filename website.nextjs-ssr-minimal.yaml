@@ -1,0 +1,9 @@
+'nextjs-ssr-minimal':
+  'jcr:primaryType': 'mgnl:page'
+  'jcr:uuid': 'd2b0dd52-1871-47ba-848e-4de1b935aa20'
+  'mgnl:created': 2022-09-07T14:47:23.492+02:00
+  'mgnl:createdBy': 'superuser'
+  'mgnl:lastModified': 2022-09-30T13:28:23.590+02:00
+  'mgnl:lastModifiedBy': 'superuser'
+  'mgnl:template': 'nextjs-ssr-minimal-lm:pages/basic'
+  'title': 'test'
